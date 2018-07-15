@@ -1,6 +1,8 @@
 package com.koujiang.ui.client;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.SWTError;
+import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
@@ -18,7 +20,7 @@ public class MainUI extends Composite {
 
 	private void createContent(Composite parent) {
 		
-		parent.setBackground(StyleFinal.PANELCOLOR);
+		parent.setBackground(StyleFinal.COLOR_INFO);
 		parent.setLayout(new FormLayout());
 		
 		Composite head = new Composite(parent, SWT.NONE);
@@ -32,7 +34,7 @@ public class MainUI extends Composite {
 		createHeadComp(head);
 		
 		Composite body = new Composite(parent, SWT.NONE);
-		body.setBackground(StyleFinal.PANELCOLOR);
+		body.setBackground(StyleFinal.COLOR_DEFAULT);
 		FormData bodyData = new FormData();
 		bodyData.top = new FormAttachment(head);
 		bodyData.left = new FormAttachment(0);
@@ -46,13 +48,20 @@ public class MainUI extends Composite {
 	}
 	
 	private void createHeadComp(Composite head) {
-		head.setBackground(StyleFinal.PANELCOLOR);
-		head.setLayout(new FormLayout());
+//		head.setBackground(StyleFinal.COLOR_DEFAULT);
+//		head.setLayout(new FormLayout());
 	}
 
 	private void createBodyComp(Composite body) {
-		body.setBackground(StyleFinal.PANELCOLOR);
 		body.setLayout(new FillLayout());
+		
+		Browser browser = null;
+		try {
+			browser = new Browser(body, SWT.NONE);
+		} catch (SWTError e) {
+			System.out.println("Could not instantiate Browser: " + e.getMessage());
+		}
+		browser.setUrl("https://www.baidu.com");
 		
 	}
 }
