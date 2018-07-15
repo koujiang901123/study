@@ -1,5 +1,7 @@
 package com.koujiang.ui.client;
 
+import java.io.File;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTError;
 import org.eclipse.swt.browser.Browser;
@@ -43,13 +45,9 @@ public class MainUI extends Composite {
 		body.setLayoutData(bodyData);
 		body.setFont(StyleFinal.FONT_9_NORMAL);
 		createBodyComp(body);
-		
-		
 	}
 	
 	private void createHeadComp(Composite head) {
-//		head.setBackground(StyleFinal.COLOR_DEFAULT);
-//		head.setLayout(new FormLayout());
 	}
 
 	private void createBodyComp(Composite body) {
@@ -58,10 +56,15 @@ public class MainUI extends Composite {
 		Browser browser = null;
 		try {
 			browser = new Browser(body, SWT.NONE);
+			
+			String fileDir = System.getProperty("user.dir")+"\\advertisement\\picture";
+			String url = fileDir+File.separator+"index.html";
+			browser.setUrl(url);
 		} catch (SWTError e) {
 			System.out.println("Could not instantiate Browser: " + e.getMessage());
 		}
-		browser.setUrl("https://www.baidu.com");
+//		browser.set
+//		browser.setUrl("https://www.baidu.com");
 		
 	}
 }
